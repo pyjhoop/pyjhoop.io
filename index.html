@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>면접 준비 자료 모음</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 20px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-brand {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #1e293b;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-sub {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 400;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 60px 24px 50px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 24px;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+
+  /* ── Filter ── */
+  .filter-bar {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 24px 0;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+  }
+
+  .filter-btn.active {
+    background: #667eea;
+    color: #fff;
+    border-color: #667eea;
+  }
+
+  /* ── Card List ── */
+  .card-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px 28px;
+    text-decoration: none;
+    color: #1e293b;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 20px rgba(102,126,234,0.1);
+    transform: translateY(-2px);
+  }
+
+  .card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #667eea;
+    background: #eef2ff;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card-body { flex: 1; }
+
+  .card-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: #1e293b;
+  }
+
+  .card-desc {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: #94a3b8;
+  }
+
+  .card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .tag-network { background: #dbeafe; color: #2563eb; }
+  .tag-infra { background: #f3e8ff; color: #7c3aed; }
+  .tag-cs { background: #dcfce7; color: #16a34a; }
+  .tag-spring { background: #fef3c7; color: #d97706; }
+  .tag-java { background: #ffe4e6; color: #e11d48; }
+  .tag-db { background: #e0f2fe; color: #0284c7; }
+
+  .card-arrow {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .card:hover .card-arrow { color: #667eea; transform: translateX(4px); }
+
+  /* ── Pagination ── */
+  .pagination {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .page-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #64748b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .page-btn:hover { border-color: #667eea; color: #667eea; }
+
+  .page-btn.active {
+    background: #667eea;
+    color: #fff;
+    border-color: #667eea;
+  }
+
+  .page-btn.disabled {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .page-info {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    margin: 0 8px;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 60px 0;
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 30px 24px;
+    color: #cbd5e1;
+    font-size: 0.68rem;
+    border-top: 1px solid #e2e8f0;
+    background: #fff;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero-stats { gap: 20px; }
+    .card { padding: 18px 16px; gap: 14px; }
+    .card-desc { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="header-brand" href="./index.html">
+      📚 면접 준비 자료
+      <span class="header-sub">Backend Developer</span>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>백엔드 면접 준비</h1>
+  <p>매일 하나씩, 체계적으로 쌓아가는 기술 면접 아카이브</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num" id="totalCount">0</div>
+      <div class="stat-label">총 주제</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="categoryCount">0</div>
+      <div class="stat-label">카테고리</div>
+    </div>
+  </div>
+</section>
+
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" data-filter="all">전체</button>
+</div>
+
+<div class="card-list" id="cardList"></div>
+<div class="pagination" id="pagination"></div>
+
+<footer>
+  Yeon Jun's Interview Archive — Powered by GitHub Pages
+</footer>
+
+<script>
+// ══════════════════════════════════════════
+// 📌 새 면접 자료 추가 시 이 배열에만 추가하면 됩니다
+// ══════════════════════════════════════════
+const articles = [
+  {
+    num: "01",
+    title: "프록시(Proxy) — Forward / Reverse / API Gateway",
+    desc: "Forward Proxy와 Reverse Proxy의 차이, SSL Termination, 로드밸런싱 알고리즘, Spring Cloud Gateway까지 아키텍처 시각화와 함께 정리",
+    date: "2026-03-04",
+    tags: [
+      { label: "네트워크", cls: "tag-network" },
+      { label: "인프라", cls: "tag-infra" },
+      { label: "CS", cls: "tag-cs" }
+    ],
+    href: "./pages/proxy-architecture.html"
+  },
+  // ── 아래에 새 항목 추가 ──
+  // {
+  //   num: "02",
+  //   title: "제목",
+  //   desc: "설명",
+  //   date: "2026-03-05",
+  //   tags: [
+  //     { label: "태그", cls: "tag-spring" }
+  //   ],
+  //   href: "./pages/파일명.html"
+  // },
+];
+
+const ITEMS_PER_PAGE = 5;
+let currentPage = 1;
+let currentFilter = "all";
+
+// Collect all unique tags
+const allTags = [...new Set(articles.flatMap(a => a.tags.map(t => t.label)))];
+
+function init() {
+  document.getElementById("totalCount").textContent = articles.length;
+  document.getElementById("categoryCount").textContent = allTags.length;
+
+  // Build filter buttons
+  const filterBar = document.getElementById("filterBar");
+  allTags.forEach(tag => {
+    const btn = document.createElement("button");
+    btn.className = "filter-btn";
+    btn.dataset.filter = tag;
+    btn.textContent = tag;
+    btn.onclick = () => setFilter(tag);
+    filterBar.appendChild(btn);
+  });
+
+  // Set "all" button click
+  filterBar.querySelector('[data-filter="all"]').onclick = () => setFilter("all");
+
+  render();
+}
+
+function setFilter(filter) {
+  currentFilter = filter;
+  currentPage = 1;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  document.querySelector(`[data-filter="${filter}"]`).classList.add("active");
+  render();
+}
+
+function getFiltered() {
+  if (currentFilter === "all") return articles;
+  return articles.filter(a => a.tags.some(t => t.label === currentFilter));
+}
+
+function render() {
+  const filtered = getFiltered();
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const pageItems = filtered.slice(start, start + ITEMS_PER_PAGE);
+
+  const list = document.getElementById("cardList");
+
+  if (pageItems.length === 0) {
+    list.innerHTML = '<div class="no-results">아직 등록된 자료가 없습니다.</div>';
+  } else {
+    list.innerHTML = pageItems.map(item => `
+      <a class="card" href="${item.href}">
+        <div class="card-num">${item.num}</div>
+        <div class="card-body">
+          <div class="card-title">${item.title}</div>
+          <div class="card-desc">${item.desc}</div>
+          <div class="card-meta">
+            <span class="card-date">${item.date}</span>
+            ${item.tags.map(t => `<span class="card-tag ${t.cls}">${t.label}</span>`).join("")}
+          </div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+    `).join("");
+  }
+
+  // Pagination
+  const pag = document.getElementById("pagination");
+  if (totalPages <= 1) {
+    pag.innerHTML = "";
+    return;
+  }
+
+  let html = `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" onclick="goPage(${currentPage - 1})">‹</button>`;
+
+  for (let i = 1; i <= totalPages; i++) {
+    html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+  }
+
+  html += `<span class="page-info">${currentPage} / ${totalPages}</span>`;
+  html += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" onclick="goPage(${currentPage + 1})">›</button>`;
+  pag.innerHTML = html;
+}
+
+function goPage(p) {
+  const totalPages = Math.ceil(getFiltered().length / ITEMS_PER_PAGE);
+  if (p < 1 || p > totalPages) return;
+  currentPage = p;
+  render();
+  window.scrollTo({ top: 300, behavior: 'smooth' });
+}
+
+init();
+</script>
+
+</body>
+</html>
